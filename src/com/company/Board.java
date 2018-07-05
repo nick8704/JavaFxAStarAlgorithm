@@ -8,6 +8,7 @@ public class Board {
 
     public static GraphicsContext gc;
     public static List<Square> squareList = new ArrayList<>();
+    private static int redSquareCounter;
 
     public Board(GraphicsContext gc) {
         this.gc = gc;
@@ -58,8 +59,27 @@ public class Board {
     public void chooseColorOnWhite(int sceneX, int sceneY) {
         for (int i = 0; i < squareList.size(); i++) {
             if (squareList.get(i).consistPoint(sceneX, sceneY)) {
-                if (squareList.get(i).getColor() == Square.SquareColor.BLACK || squareList.get(i).getColor() == Square.SquareColor.RED) {
+                if (squareList.get(i).getColor() == Square.SquareColor.BLACK) {
                     squareList.get(i).setColor(Square.SquareColor.WHITE);
+                    break;
+                }
+                if (squareList.get(i).getColor() == Square.SquareColor.RED) {
+                    squareList.get(i).setColor(Square.SquareColor.WHITE);
+                    redSquareCounter--;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void chooseColorOnRed(int sceneX, int sceneY) {
+        for (int i = 0; i < squareList.size(); i++) {
+            if (squareList.get(i).consistPoint(sceneX, sceneY)) {
+                if (squareList.get(i).getColor() == Square.SquareColor.WHITE) {
+                    if (redSquareCounter < 2) {
+                        squareList.get(i).setColor(Square.SquareColor.RED);
+                        redSquareCounter++;
+                    }
                     break;
                 }
             }

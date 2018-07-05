@@ -53,6 +53,9 @@ public class Main extends Application {
                 if(event.getButton() == MouseButton.SECONDARY){
                     board.chooseColorOnWhite((int) event.getSceneX(), (int) event.getSceneY());
                 }
+                if(event.isControlDown()) {
+                    board.chooseColorOnRed((int) event.getSceneX(), (int) event.getSceneY());
+                }
                 board.draw();
             }
         });
