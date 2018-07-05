@@ -60,6 +60,14 @@ public class Square {
         gc.strokeRect(x, y, width, height);
     }
 
+    public boolean consistPoint(int sceneX, int sceneY) {
+        return between(sceneX, x,x + width) && between(sceneY, y,y + height);
+    }
+
+    private static boolean between(int test, int a, int b) {
+        return test >= a && test <= b;
+    }
+
     public SquareColor getColor() {
         return color;
     }
@@ -67,4 +75,5 @@ public class Square {
     public void setColor(SquareColor color) {
         this.color = color;
     }
+
 }

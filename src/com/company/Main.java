@@ -1,9 +1,12 @@
 package com.company;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -24,6 +27,7 @@ public class Main extends Application {
         group.setCenter(canvas);
 
         Scene scene = new Scene(group);
+        registerOnMousePressListener(scene);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("A* algorithm by @anikonets v.1.0");
@@ -37,4 +41,21 @@ public class Main extends Application {
     private void clean() {
         gc.clearRect(0, 0, Config.WIDTH, Config.HEIGHT);
     }
+
+    public void registerOnMousePressListener(Scene scene) {
+        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                clean();
+                if(event.getButton() == MouseButton.PRIMARY){
+                    board.chooseColorOnBlack((int) event.getSceneX(), (int) event.getSceneY());
+                }
+                if(event.getButton() == MouseButton.SECONDARY){
+                    board.chooseColorOnWhite((int) event.getSceneX(), (int) event.getSceneY());
+                }
+                board.draw();
+            }
+        });
+    }
+
 }
