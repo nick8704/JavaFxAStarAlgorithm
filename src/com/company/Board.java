@@ -1,6 +1,7 @@
 package com.company;
 
 import javafx.scene.canvas.GraphicsContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,27 +46,15 @@ public class Board {
         }
     }
 
-    public void chooseColorOnBlack(int sceneX, int sceneY) {
-        for (int i = 0; i < squareList.size(); i++) {
-            if (squareList.get(i).consistPoint(sceneX, sceneY)) {
-                if (squareList.get(i).getColor() == Square.SquareColor.WHITE) {
-                    squareList.get(i).setColor(Square.SquareColor.BLACK);
-                    break;
-                }
-            }
-        }
-    }
-
-    public void chooseColorOnWhite(int sceneX, int sceneY) {
+    public void chooseColorWhiteAndBlack(int sceneX, int sceneY) {
         for (int i = 0; i < squareList.size(); i++) {
             if (squareList.get(i).consistPoint(sceneX, sceneY)) {
                 if (squareList.get(i).getColor() == Square.SquareColor.BLACK) {
                     squareList.get(i).setColor(Square.SquareColor.WHITE);
                     break;
                 }
-                if (squareList.get(i).getColor() == Square.SquareColor.RED) {
-                    squareList.get(i).setColor(Square.SquareColor.WHITE);
-                    redSquareCounter--;
+                if (squareList.get(i).getColor() == Square.SquareColor.WHITE) {
+                    squareList.get(i).setColor(Square.SquareColor.BLACK);
                     break;
                 }
             }
@@ -82,6 +71,18 @@ public class Board {
                     }
                     break;
                 }
+            }
+        }
+    }
+
+    public void resetRedSquare(int sceneX, int sceneY) {
+        for (int i = 0; i < squareList.size(); i++) {
+            if (squareList.get(i).consistPoint(sceneX, sceneY)) {
+                if (squareList.get(i).getColor() == Square.SquareColor.RED) {
+                    squareList.get(i).setColor(Square.SquareColor.WHITE);
+                    redSquareCounter--;
+                }
+                break;
             }
         }
     }

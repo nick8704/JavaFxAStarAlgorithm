@@ -48,13 +48,13 @@ public class Main extends Application {
             public void handle(MouseEvent event) {
                 clean();
                 if(event.getButton() == MouseButton.PRIMARY){
-                    board.chooseColorOnBlack((int) event.getSceneX(), (int) event.getSceneY());
+                    board.chooseColorWhiteAndBlack((int) event.getSceneX(), (int) event.getSceneY());
                 }
                 if(event.getButton() == MouseButton.SECONDARY){
-                    board.chooseColorOnWhite((int) event.getSceneX(), (int) event.getSceneY());
+                    board.chooseColorOnRed((int) event.getSceneX(), (int) event.getSceneY());
                 }
                 if(event.isControlDown()) {
-                    board.chooseColorOnRed((int) event.getSceneX(), (int) event.getSceneY());
+                    board.resetRedSquare((int) event.getSceneX(), (int) event.getSceneY());
                 }
                 board.draw();
             }
