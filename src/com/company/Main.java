@@ -1,5 +1,6 @@
 package com.company;
 
+import javafx.animation.PauseTransitionBuilder;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
